@@ -19,15 +19,12 @@ var updateGuesses = function() {
 };
 
 var generateGuess = function() {
-  return Math.floor(Math.random() * 10);
+  computerChoice = Math.floor(Math.random() * 10);
   
 }
 
-var computerChoice = generateGuess();
-
 function resetGame() {
   guessLeft = 5;
-  computerChoice = generateGuess();
   wins = 0;
   losses = 0;
   updateGuesses();
@@ -47,6 +44,8 @@ $(document).ready(function() {
       wins++;
       updateWins();
       guessLeft = 5;
+      generateGuess();
+      console.log(computerChoice);
     }
     else {
       alert("Wrong!");
