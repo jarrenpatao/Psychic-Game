@@ -34,6 +34,7 @@ $(document).ready(function() {
       alert("Correct!");
       wins++;
       updateWins();
+      guessLeft = 5;
     }
     else {
       alert("Wrong!");
