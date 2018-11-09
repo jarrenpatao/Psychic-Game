@@ -2,35 +2,47 @@
 var guessLeft = 5;
 var wins = 0;
 var losses = 0;
-var computerOption = ['0','1','2','3','4','5','6','7','8','9'];
-var computerChoice = computerOption[Math.floor(Math.random() * 10)];
+// var computerOption = ['0','1','2','3','4','5','6','7','8','9'];
+var computerChoice = Math.floor(Math.random() * 10);
 
     console.log(computerChoice)
 
 // Defined Main Functions
-function updateWins() {
+var updateWins = function() {
   document.querySelector("#wins").innerHTML = "Wins: " + wins;
 };
-function updateLosses() {
+var updateLosses = function() {
   document.querySelector("#losses").innerHTML = "Losses: " + losses;
 };
-function updateGuesses() {
+var updateGuesses = function() {
   document.querySelector("#guesses").innerHTML = "Guesses Left: " + guessLeft;
 };
 
+var generateGuess = function() {
+  return Math.floor(Math.random() * 10);
+  
+}
+
+var computerChoice = generateGuess();
+
 function resetGame() {
-  var guessLeft = 5;
-  var wins = 0;
-  var losses = 0;
+  guessLeft = 5;
+  computerChoice = generateGuess();
+  wins = 0;
+  losses = 0;
+  updateGuesses();
 }
 
 // Main Process
 $(document).ready(function() {
 
   document.onkeyup = function(event) {
-  var userInput = event.key;
-  if (userInput === "0" || userInput === "1" || userInput === "2" || userInput === "3" || userInput === "4" || userInput === "5" || userInput === "6" || userInput === "7" || userInput === "8" || userInput === "9") {
-    if (userInput === computerChoice) {
+  var userInput = parseInt(event.key);
+  if (isNaN(userInput)) {
+
+    return;}
+
+  if (userInput === computerChoice) {
       alert("Correct!");
       wins++;
       updateWins();
@@ -41,7 +53,7 @@ $(document).ready(function() {
       guessLeft--;
       updateLosses();
     }
-  }
+  
   if (guessLeft === 0) {
     alert("You're pretty bad.");
     losses++;
