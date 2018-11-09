@@ -2,37 +2,54 @@
 var guessLeft = 5;
 var wins = 0;
 var losses = 0;
-var ties = 0;
-var questionIndex = 0;
-var computerChoice = ['0','1','2','3','4','5','6','7','8','9'];
+var computerOption = ['0','1','2','3','4','5','6','7','8','9'];
+var computerChoice = computerOption[Math.floor(Math.random())];
+
+    console.log(computerChoice)
 
 // Defined Main Functions
+function updateWins() {
+  document.querySelector("#wins").innerHTML = "Wins: " + wins++;
+};
+function updateLosses() {
+  document.querySelector("#losses").innerHTML = "Losses: " + losses;
+};
+function updateGuesses() {
+  document.querySelector("#guesses").innerHTML = "Guesses Left: " + guessLeft;
+};
+
 function resetGame() {
-  var gueLef = 5;
+  var guessLeft = 5;
   var wins = 0;
   var losses = 0;
 }
 
 // Main Process
+$(document).ready(function() {
 
-for(var i = 0; i < computerChoice(Math.floor(Math.random[i])); i++){
-  console.log(computerChoice[i]);
-}
-
-document.onkeyup = function(event){
-  if(event.key === "0" || event.key === "1" || event.key === "2" || event.key === "3" || event.key === "4" || event.key === "5" || event.key === "6" || event.key === "7" || event.key === "8" || event.key === "9"){
-    if(event.key === computerChoice){
-      alert("sweet!");
+  document.onkeyup = function(event) {
+  var userInput = event.key;
+  if (userInput === "0" || userInput === "1" || userInput === "2" || userInput === "3" || userInput === "4" || userInput === "5" || userInput === "6" || userInput === "7" || userInput === "8" || userInput === "9") {
+    if (userInput === computerChoice) {
+      alert("Correct!");
       wins++;
-      } 
-      else {
-        alert("wrong.");
-        guessLeft--;
-      }
+      updateWins();
+    }
+    else {
+      alert("Wrong!");
+      guessLeft--;
     }
   }
-
-// Reset Game
-if (gueLef === 0){
-  resetGame();
-}
+  if (guessLeft === 0) {
+    alert("You're pretty bad.");
+    losses++;
+  }
+  if (losses === 10) {
+    alert("How have you made it this far in life... start over.");
+    resetGame();
+  
+  };;
+    updateWins();
+    updateLosses();
+    updateGuesses();
+};})
