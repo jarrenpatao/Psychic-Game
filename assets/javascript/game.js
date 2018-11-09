@@ -57,8 +57,10 @@ $(document).ready(function() {
     alert("You're pretty bad.");
     losses++;
     guessLeft = 5;
+    generateGuess();
+      console.log(computerChoice);
   }
-  if (losses === 10) {
+  if (losses === 5) {
     alert("How have you made it this far in life... start over.");
     resetGame();
   
